@@ -4,6 +4,21 @@ Programmatic and human compatible observation of ROS.
 The ROS2 observer is a "toolbox" enabling/facilitating tracing and visualizaiton of ros2 
 programs/nodes.
 
+
+Current features of the project include:
+
+- **Node Inspection via the `ros2-node-inspector`**:  
+  This tool generates JSON files for every node, topic, and datatype. It also provides node graph visualization using GraphViz.
+
+- **ROS 2 User-Level and Kernel-Level Tracing with the `ros2-tracer` Tool**:  
+  - The `ros2-tracer` manages tracing sessions for [ros2_tracing](https://github.com/ros2/ros2_tracing).  
+  - The `ros2-tracer` supports live tracing sessions using `lttng-live`.  
+  - The `ros2-tracer` handles tracing output, converting it to CTF and JSON formats.
+
+- **Docker Context/Images**:  
+  Preconfigured Docker environments to run `Trace Compass` and `Lttng Scope`.
+
+
 ## Getting Started
 
 ### Prerequisites
