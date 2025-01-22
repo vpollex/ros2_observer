@@ -7,7 +7,7 @@ ROOT_DIR:=$(shell dirname "$(realpath $(firstword $(MAKEFILE_LIST)))")
 MAKEFLAGS += --no-print-directory
 
 .EXPORT_ALL_VARIABLES:
-ROS_HOME?=${ROOT_DIR}/.log/.ros
+#ROS_HOME?=${ROOT_DIR}/.log/.ros
 TRACING_LOG_DIRECTORY=${ROS_HOME}/tracing
 DOCKER_BUILDKIT?=1
 DOCKER_CONFIG?=
