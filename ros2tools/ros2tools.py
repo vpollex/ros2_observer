@@ -318,9 +318,9 @@ class ROS2Tools:
         """
         Fetch information about a given node using `ros2 node info`.
         """
-        node_info = run_command(f"ros2 node info {node_name} | sed '/Service Servers:/q' | sed '/Service Servers:/d'")[0]
+        node_info = run_command(f"ros2 node info --no-daemon {node_name} | sed '/Service Servers:/q' | sed '/Service Servers:/d'")[0]
         if not node_info:
-            node_info = run_command(f"ros2 node info /{node_name} | sed '/Service Servers:/q' | sed '/Service Servers:/d'")[0]
+            node_info = run_command(f"ros2 node info --no-daemon /{node_name} | sed '/Service Servers:/q' | sed '/Service Servers:/d'")[0]
         if not node_info:
             return None
 
@@ -335,7 +335,7 @@ class ROS2Tools:
         """
         Get the list of active ROS 2 nodes using `ros2 node list`.
         """
-        node_list = run_command("ros2 node list | sort | uniq")[0]
+        node_list = run_command("ros2 node list --all --no-daemon | grep -v ros2cli | sort | uniq")[0]
         if not node_list:
             return []
 
@@ -406,6 +406,7 @@ class ROS2Tools:
                                'interface': interface})
 
             if is_subscriber_section:
+                print(line)
                 parts = line.split(':', 1)
                 topic = parts[0].strip()
                 datatype = parts[1].strip()

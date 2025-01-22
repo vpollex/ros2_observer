@@ -13,10 +13,12 @@ from ros2tools import ROS2Tools
 try:
     from ros2_tools.util import *
     from ros2_tools.trace_converter import *
+    from ros2_tools.ros2_node_grapher import *
 except ImportError:
     sys.path.append(os.path.join(os.path.dirname(__file__), "."))
     from util import *
     from trace_converter import *
+    from ros2_node_grapher import *
 
 
 
@@ -162,6 +164,10 @@ def main():
     output_file = os.path.join(output_dir, DATATYPES_JSON_FILE)
     write_json_file(output_file, datatypes)
     
+    grapher = ROS2NodeGrapher(GRAPH_JSON_FILE)
+    grapher.create_graph()
+    grapher.create_directed_graph()
+    grapher.generate_dot_graph()
 
 
 if __name__ == '__main__':

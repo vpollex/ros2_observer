@@ -31,6 +31,12 @@ ros-${ROS_DISTRO}-tracetools-trace
 babeltrace2
 python3-bt2
 lttng-modules-dkms
+
+## For Node graphing
+graphviz
+python3-pydot
+python3-graphviz
+python3-numpy
 ```
 - Python3 PIP packages located in `requirements.pip3`
 
@@ -134,3 +140,98 @@ ros2-node-inspector
 ```
 
 For more information use: `ros2-node-inspector --help`
+
+###### Output: `datatypes.json`
+`datatypes.json` which will be located in: `ROS_HOME/ros2_node_inspector/datatypes.json`
+will contain a serialized JSON object with all defined datatypes, used by the 
+inspected nodes, provided by ROS: 
+```json
+[
+    {
+        "datatype": "std_msgs/msg/String",
+        "interface_text": "string data",
+        "interface": [
+            {
+                "type": "primitive",
+                "datatype": "string",
+                "label": "data",
+                "array_constraint": "",
+                "constraint": "",
+                "value": "",
+                "typedef_text": "string data"
+            }
+        ]
+    },
+...
+]
+```
+
+###### Output: `nodes.json`
+`nodes.json`, which will be located in: `ROS_HOME/ros2_node_inspector/nodes.json`,
+contains a list of all running nodes including the topics, and 
+datatype associated with each topic. Each corresponding datatype will have an
+associated entry in `datatypes.json`. 
+
+
+```
+{
+    "node": "/ros2_hello_world",
+    "topics": [
+        {
+            "topic": "/parameter_events",
+            "role": "subscriber",
+            "datatype": "rcl_interfaces/msg/ParameterEvent"
+        },
+        {
+            "topic": "/subscribing_topic_name",
+            "role": "subscriber",
+            "datatype": "std_msgs/msg/String"
+        },
+        {
+            "topic": "/parameter_events",
+            "role": "publisher",
+            "datatype": "rcl_interfaces/msg/ParameterEvent"
+        },
+        {
+            "topic": "/publishing_topic_name",
+            "role": "publisher",
+            "datatype": "std_msgs/msg/String"
+        },
+        {
+            "topic": "/rosout",
+            "role": "publisher",
+            "datatype": "rcl_interfaces/msg/Log"
+        }
+    ]
+}
+```
+
+###### Output: `node_summaries.json`
+`node_summaries.json`, which will be located in: 
+`ROS_HOME/ros2_node_inspector/node_summaries.json`, `nodes.json` and 
+`datatypes.json` combined into a single JSON object including the raw interface
+text that was used to generate each JSON object provided by 
+`ros interface show <message type>`.
+
+All datatypes for each topic are explicitly defined every time they occur. 
+
+###### Output: `__<node name>.json`
+Every node will have a corresponding JSON file located in 
+`ROS_HOME/ros2_node_inspector/__<node name>.json`.
+To generate the node json files the character `/` is replaced with `__`.
+
+
+This contains the complete definition for that node including publishers, 
+subscribers, messages and datatypes. This same data can also be found in 
+`node_summaries.json`
+
+###### Output: `graph.json`
+`graph.json`, which will be located in: 
+`ROS_HOME/ros2_node_inspector/graph.json`, is a connected graph representation
+of the nodes and edges created by joining `publisher->subscriber` and 
+`subscriber->publisher` pairs.
+The `graph.json` is used to generate a graphviz dot file called `graph.dot` and
+`graph.dot.png` The dot file can be opened in any GraphViz DOT rendering tool 
+or the `graph.dot.png` can be opened with an image viewer.
+
+Graphing is still a work in progress.
