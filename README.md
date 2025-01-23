@@ -26,9 +26,15 @@ This tool requires ROS2 and Python3 installed (tested with Python3.12 and ROS 2 
 - Python3 (tested with Python 3.12)
 - ROS2 (tested with Jazzy)
 - ROS2 https://github.com/ros2/ros2_tracing
+- The logged in user must be a member of the `tracing` group.
+    To add the current user to the `tracing` group use the following:
+    ```
+    groupadd -r tracing || true
+    usermod -aG tracing "${USER}"
+    ```
 - babeltrace2 
 - Tested in Ubuntu 24.04
-- The following system packages are required:
+- The following system packages are required(see: [requirements.system](https://github.com/DLR-TS/ros2_observer/blob/main/requirements.system)):
 ```
 ros-${ROS_DISTRO}-ros2trace
 ros-${ROS_DISTRO}-ros2trace-analysis
@@ -53,7 +59,7 @@ python3-pydot
 python3-graphviz
 python3-numpy
 ```
-- Python3 PIP packages located in `requirements.pip3`
+- Python3 PIP packages located in [requirements.pip3](https://github.com/DLR-TS/ros2_observer/blob/main/requirements.pip3)
 
 ### Building With Docker
 - Requires docker and GNU Make installed
