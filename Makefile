@@ -25,7 +25,6 @@ _install:
 
 .PHONY: clean
 clean:
-	python3 setup.py clean
 	rm -rf ros2tools.egg-info build  dist ros2tools/__pycache__ 
 	rm -rf build
 	docker rmi ${DOCKER_IMAGE} --force || true

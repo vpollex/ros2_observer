@@ -32,6 +32,7 @@ ros_home = os.getenv('ROS_HOME', os.path.expanduser('~/.ros'))
 os.environ['ROS_HOME'] = ros_home
 OUTPUT_DIRECTORY = os.path.join(os.environ['ROS_HOME'], 'ros2_node_inspector')
 
+GRAPH_JSON_FILE = f"{OUTPUT_DIRECTORY}/graph.json"
 try:
     check_command_installed("ros2")
 except:

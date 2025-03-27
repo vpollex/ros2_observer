@@ -15,7 +15,7 @@ except ImportError:
     from trace_converter import *
 
 SESSION_NAME = "ros2_tracer"
-START_TRACER_COMMAND = f"ros2 trace start {SESSION_NAME}"
+START_TRACER_COMMAND = f"ros2 trace -a start {SESSION_NAME}"
 # START_TRACER_COMMAND = f"ros2 trace start {SESSION_NAME} --ust function_entry --ust function_exit --ust callback_entry --ust callback_exit"
 STOP_TRACER_COMMAND = f"ros2 trace stop {SESSION_NAME}"
 TRACING_DIRECTORY = os.environ["ROS_HOME"] + "/tracing/"
