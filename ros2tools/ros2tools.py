@@ -396,6 +396,8 @@ class ROS2Tools:
             if is_publisher_section:
                 parts = line.split(':', 1)
                 topic = parts[0].strip()
+                if parts == "":
+                    continue
                 datatype = parts[1].strip()
                 interface_text = ROS2Tools.get_interface_info(datatype)
                 interface = ROS2Tools.parse_interface_text(interface_text)
@@ -406,8 +408,9 @@ class ROS2Tools:
                                'interface': interface})
 
             if is_subscriber_section:
-                print(line)
                 parts = line.split(':', 1)
+                if parts == "":
+                    continue
                 topic = parts[0].strip()
                 datatype = parts[1].strip()
                 interface_text = ROS2Tools.get_interface_info(datatype)

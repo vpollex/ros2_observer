@@ -111,7 +111,7 @@ class ROS2NodeGrapher:
             data=[edge_trace, node_trace],
             layout=go.Layout(
                 title="Directed Network Graph" if directed else "Network Graph",
-                titlefont_size=16,
+                font_size=16,
                 showlegend=False,
                 hovermode="closest",
                 margin=dict(b=0, l=0, r=0, t=0),
