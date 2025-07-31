@@ -1,6 +1,7 @@
 # ros2tools/__init__.py
 
 from .ros2tools import *
+from .util import *
 #from .ros2_node_inspector import *
 #from .interface_text_parser import *
 #from .message_description_to_json import *

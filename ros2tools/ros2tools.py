@@ -5,12 +5,14 @@ import sys
 import re
 import os
 
-
 try:
-    from ros2_tools.util import *
+    from ros2tools.util import *
+    from ros2tools.util import run_command
+
 except ImportError:
     sys.path.append(os.path.join(os.path.dirname(__file__), "."))
     from util import *
+    from util import run_command
     from trace_converter import *
 
 
