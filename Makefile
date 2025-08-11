@@ -25,6 +25,7 @@ _install:
 
 .PHONY: clean
 clean:
+	cd trace_compass && make clean
 	rm -rf ros2tools.egg-info build  dist ros2tools/__pycache__ 
 	rm -rf build
 	docker rmi ${DOCKER_IMAGE} --force || true
